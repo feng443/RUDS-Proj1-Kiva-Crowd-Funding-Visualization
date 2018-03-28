@@ -1,1 +1,2 @@
-Import TextBlob
+import textblob
+import matplotlib.pyplot as plt
