@@ -26,7 +26,7 @@ class KivaData(object):
         df = pd.read_csv(file)
 
         ## Covert date time types
-        time_columns = ['posted_time', 'disbursed_time', 'funded_time']
+        time_columns = ['posted_time', 'disbursed_time', 'funded_time', 'date']
         df.loc[:, time_columns] = df[time_columns].apply(pd.to_datetime)
 
         ## Clean up gender
