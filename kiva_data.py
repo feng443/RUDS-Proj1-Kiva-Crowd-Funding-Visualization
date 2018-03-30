@@ -17,20 +17,34 @@ from forex_python.converter import CurrencyRates
 SAMPLE_SIZE = 10000
 
 class KivaData(object):
+    
+    _exchange_rates = None
+    
     @property
     def loan_data(self):
         return self._loan_data
     
     @property
+    def wb_data(self):
+        if self._wb_dta:
+            return self._wb_data
+        else:
+            self._wb_data = self.get_wb_data()
+    
+    @property
     def exchange_rates(self):
-        return self._currency_exchange_rates
+        if self._exchange_rates:
+            return self._exchange_rates
+        else:
+            self._exchange_rates = self.get_rates()
+            return self._exchange_rates
     
     def get_rates(self):
         
         # Get the rates from API
         
         # Store into self._rates for SSP, store hardcode most recent rate
-        self._currency_exchange_rates = {'USD': 1, 'CNY': 6.72}
+        return {'USD': 1, 'CNY': 6.72}
         
   
     def __init__(self, use_sample=False):
@@ -42,11 +56,12 @@ class KivaData(object):
         time_columns = ['posted_time', 'disbursed_time', 'funded_time', 'date']
         df.loc[:, time_columns] = df[time_columns].apply(pd.to_datetime)
 
+         
         ## Convert to USD
-        amount_columns = ['funded_amount', 'loan_amount']
-        df.loc[:, amount_columns] = df[amount_columns].apply(lambda x: x)
-        
-        self.get_rates()
+        for amount in  ['funded_amount', 'loan_amount']:
+            df.loc[:, amount + '_usd'] = df[amount] * df['currency'].apply(
+                lambda x: self.exchange_rates.get(x, 1)
+            )
         
         ## Clean up gender
         # rule: With only 1 gender, convert to one multiple, take majority
@@ -64,8 +79,6 @@ class KivaData(object):
 
         df.loc[:, 'gender'] = df['borrower_genders'].apply(normalize_gender)
         
-        # Add USD amount
-        
-        
+       
         
         self._loan_data = df
