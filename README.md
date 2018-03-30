@@ -37,4 +37,4 @@ In this analysis, we will look into patterns of Kiva crowd-funding utlizing [Kag
     * map.py
     * wordcloud.py
 * raw_data/
-* t/
+* test/
