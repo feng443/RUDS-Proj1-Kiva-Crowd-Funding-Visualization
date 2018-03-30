@@ -40,16 +40,25 @@ class KivaData(object):
             return self._exchange_rates
     
     def get_rates(self):
-        
-        # Get the rates from API
-        
-        # Store into self._rates for SSP, store hardcode most recent rate
-        return {'USD': 1, 'CNY': 6.72}
+        ret_dict = {}
+        url = "http://data.fixer.io/api/latest?"
+        query_url = url + "access_key=" + access_key
+        currency_response = requests.get(query_url)
+        currency_json = currency_response.json()
+               usd_val = currency_json["rates"]["USD"]
+
+        for (key, value) in currency_json["rates"].items():
+            # print(key + ":" + str(value))
+            ret_dict.update({key: (value / usd_val)})
+
+        return ret_dict
+
         
   
     def __init__(self, use_sample=False):
         sample_str = '_sample' if use_sample else ''
-        file = os.path.join('raw_data', f'kiva_loans{sample_str}.csv')
+        #file = os.path.join("raw_data", f"kiva_loans{sample_str}.csv")
+        file = os.path.join("raw_data", "kiva_loans_sample.csv")
         df = pd.read_csv(file)
 
         ## Covert date time types
