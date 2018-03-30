@@ -14,6 +14,7 @@ import pandas as pd
 from collections import Counter
 from fixer_config import access_key
 import json
+import requests
 from forex_python.converter import CurrencyRates
 
 SAMPLE_SIZE = 10000
@@ -40,7 +41,8 @@ class KivaData(object):
         else:
             self._exchange_rates = self.get_rates()
             return self._exchange_rates
-    
+
+
     def get_rates(self):
         ret_dict = {}
         url = "http://data.fixer.io/api/latest?"
@@ -54,13 +56,12 @@ class KivaData(object):
             ret_dict.update({key: (value / usd_val)})
 
         return ret_dict
-
         
   
     def __init__(self, use_sample=False):
         sample_str = '_sample' if use_sample else ''
-        #file = os.path.join("raw_data", f"kiva_loans{sample_str}.csv")
-        file = os.path.join("raw_data", "kiva_loans_sample.csv")
+        file = os.path.join("raw_data", f"kiva_loans{sample_str}.csv")
+        #file = os.path.join("raw_data", "kiva_loans_sample.csv")
         df = pd.read_csv(file)
 
         ## Covert date time types
