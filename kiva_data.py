@@ -45,7 +45,7 @@ class KivaData(object):
         query_url = url + "access_key=" + access_key
         currency_response = requests.get(query_url)
         currency_json = currency_response.json()
-               usd_val = currency_json["rates"]["USD"]
+        usd_val = currency_json["rates"]["USD"]
 
         for (key, value) in currency_json["rates"].items():
             # print(key + ":" + str(value))
