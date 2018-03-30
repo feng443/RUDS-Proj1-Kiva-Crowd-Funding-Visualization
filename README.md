@@ -31,8 +31,8 @@ In this analysis, we will look into patterns of Kiva crowd-funding utlizing [Kag
 
 * Kiva_Analytics.ipynb
 * README.md
-* config.py
-* lib/
+* nacos/
+    * config.py
     * kiva_data.py
     * map.py
     * wordcloud.py
