@@ -12,6 +12,8 @@ kiva_load_df = KivaData(sample=True.loan_data
 import os
 import pandas as pd
 from collections import Counter
+from fixer_config import access_key
+import json
 from forex_python.converter import CurrencyRates
 
 SAMPLE_SIZE = 10000
