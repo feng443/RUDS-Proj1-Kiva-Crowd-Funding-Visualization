@@ -5,6 +5,7 @@ import pandas as pd
 from narcos.country_code_converter import CountryCodeConverter
 import json
 import plotly
+import os
 
 def plot_map(loan_data):
     plotly.tools.set_credentials_file(username='feng443', api_key='qjXE19UfO00GLS5YJKhw')
@@ -48,5 +49,6 @@ def plot_map(loan_data):
     )
 
     fig = dict( data=data, layout=layout )
+    py.image.save_as(fig, filename=os.path.join('image', 'kiva_map.png'))
     return fig
     # py.iplot(fig, validate=False, filename='d3-world-map' )

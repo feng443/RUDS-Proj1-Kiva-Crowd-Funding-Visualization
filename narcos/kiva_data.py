@@ -6,24 +6,33 @@ Usage:
 from kiva_data import KivaData
 kiva_load_df = KivaData(sample=True.loan_data
 
-
 '''
 
 import os
+import requests
 import pandas as pd
 from collections import Counter
-from forex_python.converter import CurrencyRates
+from narcos.fixer_config import FIXER_KEY
 
+FIXER_URL = "http://data.fixer.io/api/latest?"
 SAMPLE_SIZE = 10000
 
 class KivaData(object):
     
+    def __init__(self, use_sample=False):
+        self._use_sample = use_sample
+
     _exchange_rates = None
+    _loan_data = None
     
     @property
     def loan_data(self):
-        return self._loan_data
-    
+        if self._loan_data:
+            return self._loan_data
+        else:
+            self._loan_data = self.get_loan_data()
+            return self._loan_data
+        
     @property
     def wb_data(self):
         if self._wb_dta:
@@ -40,15 +49,19 @@ class KivaData(object):
             return self._exchange_rates
     
     def get_rates(self):
+        ret_dict = {}
         
-        # Get the rates from API
-        
-        # Store into self._rates for SSP, store hardcode most recent rate
-        return {'USD': 1, 'CNY': 6.72}
-        
+        query_url = FIXER_URL + "access_key=" + FIXER_KEY
+        currency_response = requests.get(query_url)
+        currency_json = currency_response.json()
+        usd_val = currency_json["rates"]["USD"]
+        for (key, value) in currency_json["rates"].items():
+            ret_dict.update({key:(usd_val/value)})
+    
+        return ret_dict             
   
-    def __init__(self, use_sample=False):
-        sample_str = '_sample' if use_sample else ''
+    def get_loan_data(self):
+        sample_str = '_sample' if self._use_sample else ''
         #file = os.path.join('raw_data', f'kiva_loans{sample_str}.csv')
         file = os.path.join('raw_data', 'kiva_loans_sample.csv')
         df = pd.read_csv(file)
@@ -57,10 +70,9 @@ class KivaData(object):
         time_columns = ['posted_time', 'disbursed_time', 'funded_time', 'date']
         df.loc[:, time_columns] = df[time_columns].apply(pd.to_datetime)
 
-         
         ## Convert to USD
         for amount in  ['funded_amount', 'loan_amount']:
-            df.loc[:, amount + '_usd'] = df[amount] * df['currency'].apply(
+            df.loc[:, amount] = df[amount] * df['currency'].apply(
                 lambda x: self.exchange_rates.get(x, 1)
             )
         
@@ -79,7 +91,4 @@ class KivaData(object):
                 return borrower_genders
 
         df.loc[:, 'gender'] = df['borrower_genders'].apply(normalize_gender)
-        
-       
-        
-        self._loan_data = df
+        return df

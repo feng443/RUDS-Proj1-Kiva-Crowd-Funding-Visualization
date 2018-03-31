@@ -1,1 +1,1 @@
-access_key="1d247efd9c9932ad92080f59038c9fb5"
+FIXER_KEY="1d247efd9c9932ad92080f59038c9fb5"
