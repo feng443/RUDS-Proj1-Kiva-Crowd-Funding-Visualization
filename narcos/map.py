@@ -1,8 +1,8 @@
 # <Chan Feng> 2018-04-01 Plot Kiva loan in world map.
 import plotly.plotly as py
 import pandas as pd
-import pycountry
-from country_code_converter import CountryCodeConverter
+#import pycountry
+from narcos.country_code_converter import CountryCodeConverter
 import json
 import plotly
 

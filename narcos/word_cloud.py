@@ -1,5 +1,6 @@
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+import os
 
 def plot_wordcloud(df, column, gender=None):
     if gender is None:
@@ -26,6 +27,7 @@ def plot_all_and_genders_wordcloud(df, column):
 
     plt.subplot2grid((2, 2), (1, 1))
     plot_wordcloud(df, column, gender='female')
+    plt.savefig(os.path.join('image', f'kiva_data_map_{column}.png'))
     plt.show()
 
 def draw_wordcloud(df):
