@@ -1,6 +1,6 @@
 # Rutgers Data Science Bootcamp Project #1 - Kiva Crowdfunding Analystics
 
-March - April 2018, Team NACOS:
+March - April 2018, Team NARCOS:
 
 - [Chan Feng](https://github.com/feng443)
 - [Anuj Pandya](https://github.com/anujpandya3105)
