@@ -1,8 +1,9 @@
 '''
 
-Kiva Data Mobule
+Kiva Data Module
 
 Usage:
+
 from kiva_data import KivaData
 kiva_load_df = KivaData(sample=True.loan_data
 

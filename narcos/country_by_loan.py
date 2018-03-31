@@ -1,8 +1,4 @@
-#from forex_python.converter import CurrencyRates
 import matplotlib.pyplot as plt
-#import requests
-#import json
-#import numpy as np
 import os
 
 def plot_country_by_loan_amount(df):
