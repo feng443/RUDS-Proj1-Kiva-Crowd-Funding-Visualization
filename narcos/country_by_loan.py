@@ -5,6 +5,7 @@ import requests
 from narcos.fixer_config import access_key
 import json
 import numpy as np
+import os
 
 from narcos.kiva_data import KivaData
 from forex_python.converter import CurrencyRates
@@ -14,7 +15,7 @@ import seaborn as sns
 kiva_data = KivaData(use_sample=True)
 df = kiva_data.loan_data
 
-def plot_country_by_loan_amount():
+def plot_country_by_loan_amount(df):
     country_df = df[['country', 'loan_amount']].groupby("country").sum()
     country_df['loan_ranked'] = df[['country', 'loan_amount']].groupby("country").sum().rank(ascending=True)
     country_df_filtered = country_df[country_df['loan_ranked'] < 5]
@@ -23,5 +24,6 @@ def plot_country_by_loan_amount():
     print(country_df_filtered)
 
     country_df_filtered.plot.barh(x='country', y='loan_amount', color=['b', 'r', 'y', 'g', ], align='edge')
+    plt.savefig(os.path.join('image', 'coutry_by_loan.png'))
 
     plt.show()
