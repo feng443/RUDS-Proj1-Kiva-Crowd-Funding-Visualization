@@ -74,7 +74,7 @@ class KivaData(object):
         for amount in  ['funded_amount', 'loan_amount']:
             df.loc[:, amount] = df[amount] * df['currency'].apply(
                 lambda x: self.exchange_rates.get(x, 1)
-            )
+        )
         
         ## Clean up gender
         # rule: With only 1 gender, convert to one multiple, take majority
