@@ -60,8 +60,8 @@ class KivaData(object):
   
     def __init__(self, use_sample=False):
         sample_str = '_sample' if use_sample else ''
-        file = os.path.join("raw_data", f"kiva_loans{sample_str}.csv")
-        #file = os.path.join("raw_data", "kiva_loans_sample.csv")
+        #file = os.path.join("raw_data", f"kiva_loans{sample_str}.csv")
+        file = os.path.join("raw_data", "kiva_loans_sample.csv")
         df = pd.read_csv(file)
 
         ## Covert date time types
