@@ -19,15 +19,15 @@ def plot_all_and_genders_wordcloud(df, column):
     figure = plt.figure(figsize=(16, 18))
 
     plt.subplot2grid((2, 2), (0, 0), colspan=2)
-    plot_wordcloud(loan_data, column)
+    plot_wordcloud(df, column)
 
     plt.subplot2grid((2, 2), (1, 0))
-    plot_wordcloud(loan_data, column, gender='male')
+    plot_wordcloud(df, column, gender='male')
 
     plt.subplot2grid((2, 2), (1, 1))
-    plot_wordcloud(loan_data, column, gender='female')
+    plot_wordcloud(df, column, gender='female')
     plt.show()
 
 def draw_wordcloud(df):
     for column in ['tags', 'activity', 'use']:
-        plot_all_and_genders_wordcloud(loan_data, column)
+        plot_all_and_genders_wordcloud(df, column)
