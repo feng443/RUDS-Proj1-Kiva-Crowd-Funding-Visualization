@@ -5,7 +5,7 @@ March - April 2018, Team NARCOS:
 - [Chan Feng](https://github.com/feng443)
 - [Anuj Pandya](https://github.com/anujpandya3105)
 - [Nisha Agarwal](https://github.com/agarwan1)
- [Ravi Kolla](https://github.com/ravikanth-kolla)
+- [Ravi Kolla](https://github.com/ravikanth-kolla)
 
 ## Synopsis
 Based on Wikipedia, Kiva is a non profit organization that allows people to lend money via the Internet to low-income entrepreneurs and students in over 80 countries. Kiva's mission is “to connect people through lending to alleviate poverty".
@@ -32,14 +32,14 @@ In this analysis, we will look into patterns of Kiva crowd-funding utlizing [Kag
 pip install -r requirements.txt
 conda install -c conda-base wordcloud
 
-* Kiva_Analytics.ipynb
+* KivaDataVisualization.ipynb
 * requirements.txt
 * README.md
-* nacos/
-    * config.py
+* narcos/
+    * fixer_config.py
     * kiva_data.py
     * map.py
-    * wordcloud.py
+    * word_cloud.py
 * data/
 * image/
 
