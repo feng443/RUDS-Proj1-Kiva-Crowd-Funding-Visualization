@@ -18,7 +18,7 @@ def plot_wordcloud(df, column, gender=None):
     mask = np.array(
         Image.open(
             os.path.join(
-                'image',
+                'resource',
                 f'{gender}.png' if gender else 'earth.png')))
     
     wordcloud = WordCloud(
