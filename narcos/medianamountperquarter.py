@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+import os
 from datetime import datetime
 import pandas as pd
 
@@ -19,10 +20,12 @@ def medloanquarter():
     medloanq = df.groupby('Qtr').agg('median')[['loan_amount']]
     medloanq.head()
 
-    medloanq.plot.bar(y='loan_amount', figsize=(20, 4))
+    medloanq.plot.bar(y='loan_amount', figsize=(20, 15))
     plt.title('Median Loan Amount Per Quarter')
     plt.ylabel("Loan Amount")
     plt.xlabel("Quarter")
+    savepath = os.path.join('..', 'image')
+    plt.savefig(savepath + 'median_amount_per_quarter_bar.png)
     # plt.savefig('numloans.png')
     # df.plot(figsize=(20,4))
 
