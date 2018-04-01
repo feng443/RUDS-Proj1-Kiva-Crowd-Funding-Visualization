@@ -15,7 +15,6 @@ import pandas as pd
 from collections import Counter
 from narcos.fixer_config import FIXER_KEY
 
-FIXER_URL = "http://data.fixer.io/api/latest?"
 SAMPLE_SIZE = 10000
 
 class KivaData(object):
@@ -23,7 +22,6 @@ class KivaData(object):
     def __init__(self, use_sample=False):
         self._use_sample = use_sample
 
-    _exchange_rates = None
     _loan_data = None
     
     @property
@@ -40,15 +38,7 @@ class KivaData(object):
             return self._wb_data
         else:
             self._wb_data = self.get_wb_data()
-    
-    @property
-    def exchange_rates(self):
-        if self._exchange_rates:
-            return self._exchange_rates
-        else:
-            self._exchange_rates = self.get_rates()
-            return self._exchange_rates
-    
+       
     def get_rates(self):
         ret_dict = {}
         
@@ -63,19 +53,14 @@ class KivaData(object):
   
     def get_loan_data(self):
         sample_str = '_sample' if self._use_sample else ''
-        #file = os.path.join('raw_data', f'kiva_loans{sample_str}.csv')
-        file = os.path.join('raw_data', 'kiva_loans_sample.csv')
+        file = os.path.join('raw_data', f'kiva_loans{sample_str}.csv')
+        #file = os.path.join('raw_data', 'kiva_loans_sample.csv')
         df = pd.read_csv(file)
 
         ## Covert date time types
         time_columns = ['posted_time', 'disbursed_time', 'funded_time', 'date']
         df.loc[:, time_columns] = df[time_columns].apply(pd.to_datetime)
 
-        ## Convert to USD
-        for amount in  ['funded_amount', 'loan_amount']:
-            df.loc[:, amount] = df[amount] * df['currency'].apply(
-                lambda x: self.exchange_rates.get(x, 1)
-        )
         
         ## Clean up gender
         # rule: With only 1 gender, convert to one multiple, take majority
