@@ -41,7 +41,6 @@ class KivaData(object):
     def get_loan_data(self):
         sample_str = '_sample' if self._use_sample else ''
         file = os.path.join('resource', f'kiva_loans{sample_str}.csv')
-        #file = os.path.join('raw_data', 'kiva_loans_sample.csv')
         df = pd.read_csv(file)
 
         ## Covert date time types
@@ -62,5 +61,4 @@ class KivaData(object):
                 return borrower_genders
 
         df.loc[:, 'gender'] = df['borrower_genders'].apply(normalize_gender)
-        
         return df
