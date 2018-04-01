@@ -18,7 +18,7 @@ def plot_wordcloud(df, column, gender=None):
     mask = np.array(
         Image.open(
             os.path.join(
-                'image',
+                'resource',
                 f'{gender}.png' if gender else 'earth.png')))
     
     wordcloud = WordCloud(
@@ -34,10 +34,7 @@ def plot_wordcloud(df, column, gender=None):
     plt.axis("off")
     
 def plot_all_and_genders_wordcloud(df, column):
-    figure = plt.figure(figsize=(20, 16))
-
-    plt.subplot2grid((2, 2), (0, 0), colspan=2)
-    plot_wordcloud(df, column)
+    figure = plt.figure(figsize=(16, 10))
 
     plt.subplot2grid((2, 2), (1, 0))
     plot_wordcloud(df, column, gender='male')
