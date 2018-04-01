@@ -4,12 +4,17 @@ import os
 def plot_country_by_loan_amount(df):
     country_df = df[['country', 'loan_amount']].groupby("country").sum()
     country_df['loan_ranked'] = df[['country', 'loan_amount']].groupby("country").sum().rank(ascending=True)
-    country_df_filtered = country_df[country_df['loan_ranked'] < 5]
+    country_df_filtered = country_df[country_df['loan_ranked'] < 22]
     # c = country_df.groupby("country").agg('sum')[['loan_amount']]/100000
     country_df_filtered.reset_index(inplace=True)
     print(country_df_filtered)
 
-    country_df_filtered.plot.barh(x='country', y='loan_amount', color=['b', 'r', 'y', 'g', ], align='edge')
-    plt.savefig(os.path.join('image', 'coutry_by_loan.png'))
+    country_df_filtered.plot.bar(x='country', y='loan_amount', color=['b', 'r', 'y', 'g', 'c', 'silver', 'm', 'k'],
+                                 align='center', figsize=(20, 4))
+
+    plt.title("Country / Loan Plot")
+    plt.xlabel("Country Name")
+    plt.ylabel("Loan Amount")
+    plt.savefig(os.path.join('image', 'country_by_loan.png'))
 
     plt.show()
