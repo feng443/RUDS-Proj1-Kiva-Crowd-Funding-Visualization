@@ -8,10 +8,10 @@ import plotly.graph_objs as go
 
 import os
 
-def plot_map(loan_data):
+def plot_map(loan_data, by='sum'):
     plotly.tools.set_credentials_file(username='feng443', api_key='qjXE19UfO00GLS5YJKhw')
 
-    amount_by_country = loan_data.groupby(['country_code', 'country'])['funded_amount'].sum().reset_index()
+    amount_by_country = loan_data.groupby(['country_code', 'country'])['funded_amount'].agg(by).reset_index()
 
     CC = CountryCodeConverter(amount_by_country.country_code.unique())
 
@@ -40,7 +40,7 @@ def plot_map(loan_data):
           ) ]
 
     layout = dict(
-        title = 'Kiva Funded Amount by Country',
+        title = f'Kiva Funded Amount ({by}) per Country',
         geo = dict(
             showframe = False,
             showcoastlines = False,
@@ -51,6 +51,6 @@ def plot_map(loan_data):
     )
 
     fig = dict(data=data, layout=layout)
-    py.image.save_as(fig, filename=os.path.join('image', 'kiva_map.png'))
+    py.image.save_as(fig, filename=os.path.join('image', f'fund_amount_{by}_per_country.png'))
     return fig
     # py.iplot(fig, validate=False, filename='d3-world-map' )
