@@ -11,7 +11,7 @@ def median_amount_per_quarter(df):
     #Dataframe grouped by quarter. Takes the mediam loan amount per quarter.
     medloanq = df.groupby('Qtr').agg('median')[['loan_amount']]
 
-    medloanq.plot.bar(y='loan_amount', figsize=(20, 4))
+    medloanq.plot.bar(y='loan_amount', figsize=(20, 15))
     plt.title('Median Loan Amount Per Quarter')
     plt.ylabel("Loan Amount")
     plt.xlabel("Quarter")

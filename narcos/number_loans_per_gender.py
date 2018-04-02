@@ -1,11 +1,9 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import seaborn as sns
-from datetime import datetime
 import pandas as pd
 import os
 
-def numloansgender(df):
+def number_loans_per_gender(df):
 
     df['mnth_yr2'] = df['date'].apply(lambda x: x.strftime('%Y-%m'))
 
@@ -23,7 +21,7 @@ def numloansgender(df):
         hue='gender',
         alpha = 0.8,
         data=gd_df)
-    plt.title('Number of Loans per Gender Over Time')
+    plt.title('Number of Loans per Gender and Quarter')
     plt.ylabel('Number of Loans')
     plt.xlabel('Quarter')
     plt.savefig(os.path.join('image', 'num_loans_per_gender.png'))
