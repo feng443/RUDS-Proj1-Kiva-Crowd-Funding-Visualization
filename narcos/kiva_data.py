@@ -27,7 +27,7 @@ class KivaData(object):
     
     @property
     def loan_data(self):
-        if self._loan_data:
+        if self._loan_data is not None:
             return self._loan_data
         else:
             self._loan_data = self.get_loan_data()
@@ -35,10 +35,11 @@ class KivaData(object):
         
     @property
     def gdp(self):
-        if self._wb_dta:
+        if self._gdp:
             return self._gdp
         else:
             self._gdp = self.get_gdp()  
+            return self._gdp
             
     def get_gdp(self):
         gdp = {}
