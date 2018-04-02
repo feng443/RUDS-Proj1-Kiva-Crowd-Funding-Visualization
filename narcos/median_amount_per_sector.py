@@ -1,14 +1,9 @@
+import os
 import matplotlib.pyplot as plt
-import numpy as np
 import seaborn as sns
-from datetime import datetime
 import pandas as pd
 
-from narcos.kiva_data import KivaData
-df = KivaData(use_sample=True).loan_data
-df.describe()
-
-def medloansector():
+def median_amount_per_sector(df):
 
     df['mnth_yr2'] = df['date'].apply(lambda x: x.strftime('%Y-%m'))
     # Add a column for quarter.
@@ -31,5 +26,6 @@ def medloansector():
     plt.title('Median Loan Amount per Sector and Quarter')
     plt.ylabel('Median Loan Amount')
     plt.xlabel('Quarter')
+    plt.savefig(os.path.join('image', 'median_amount_per_sector.png'))
 
     plt.show()
