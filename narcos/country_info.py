@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 
-country_info_df = pd.read_csv("raw_data/HDI_complete.csv")
+country_info_df = pd.read_csv("../raw_data/HDI_complete.csv")
 country_info_df.head()
 
 def getTotalGDP(country,year):
