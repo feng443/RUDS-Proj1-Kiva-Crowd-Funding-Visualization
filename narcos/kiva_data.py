@@ -35,17 +35,19 @@ class KivaData(object):
         
     @property
     def gdp(self):
-        if self._gdp:
+        if self._gdp is not None:
             return self._gdp
         else:
             self._gdp = self.get_gdp()  
             return self._gdp
             
     def get_gdp(self):
-        gdp = {}
+        gdp_list = []
         for country_code in self.loan_data.country_code.unique():
-            gdp[country_code] = wbdata.get_data("NY.GDP.PCAP.CD", country=(country_code))[1]['value']
-        return gdp
+            if isinstance(country_code, str):
+                gdp_list.append([country_code, 
+                                 pd.to_numeric(wbdata.get_data("NY.GDP.PCAP.CD", country=(country_code))[1]['value'])])
+        return pd.DataFrame(gdp_list, columns=['country_code', 'gdp'])
 
     def get_loan_data(self):
         sample_str = '_sample' if self._use_sample else ''

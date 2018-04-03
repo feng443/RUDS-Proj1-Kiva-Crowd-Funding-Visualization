@@ -30,7 +30,7 @@ def plot_wordcloud(df, column, gender=None):
     ).generate(text)
 
     plt.imshow(wordcloud, interpolation="bilinear")
-    plt.title(title, fontsize=30)
+    plt.title(title, fontsize=15)
     plt.axis("off")
     
 def plot_all_and_genders_wordcloud(df, column):
