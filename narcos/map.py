@@ -51,6 +51,6 @@ def plot_map(loan_data, by='sum'):
     )
 
     fig = dict(data=data, layout=layout)
-    py.image.save_as(fig, filename=os.path.join('image', f'fund_amount_{by}_per_country.png'))
+    py.image.save_as(fig, filename=os.path.join('image', f'map_amount_{by}_by_country.png'))
     return fig
     # py.iplot(fig, validate=False, filename='d3-world-map' )
