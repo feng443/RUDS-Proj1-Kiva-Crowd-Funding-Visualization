@@ -9,7 +9,7 @@ def plot_sector_by_loan_amount(df):
     sector_df_filtered.reset_index(inplace=True)
     print(sector_df_filtered)
 
-    sector_df_filtered.plot.bar(x='sector',y='loan_amount', color=['g'], align='center',figsize=(20,4))
+    sector_df_filtered.plot.bar(x='sector',y='loan_amount', color=['steelblue'], align='center',figsize=(20,4))
 
     plt.title("Sector / Loan Plot")
     plt.xlabel("Sector Name")
