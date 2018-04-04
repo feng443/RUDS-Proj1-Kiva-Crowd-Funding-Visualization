@@ -14,7 +14,7 @@ def number_loans_per_gender(df):
 
     gd_df = df.groupby(['Qtr', 'gender'])['id'].count().reset_index()
     gd_df = gd_df[gd_df['Qtr'] < pd.Period('2017Q3')]
-    plt.figure(figsize=(20,10))
+    plt.figure(figsize=(12,6))
     sns.pointplot(
         x='Qtr',
         y='id',
