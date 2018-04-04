@@ -14,13 +14,16 @@ def number_loans_per_gender(df):
 
     gd_df = df.groupby(['Qtr', 'gender'])['id'].count().reset_index()
     gd_df = gd_df[gd_df['Qtr'] < pd.Period('2017Q3')]
-    plt.figure(figsize=(12,6))
-    sns.pointplot(
-        x='Qtr',
-        y='id',
-        hue='gender',
+    gd_df = gd_df.pivot(index='Qtr', columns='gender')
+
+    gd_df.plot.line(
+        color=['green', 'steelblue'],
         alpha = 0.8,
-        data=gd_df)
+        figsize=(14,8),
+        marker='.',
+        markersize=12,
+    )
+    plt.legend(labels=['Female', 'Male'], title='')
     plt.title('Number of Loans per Gender and Quarter')
     plt.ylabel('Number of Loans')
     plt.xlabel('Quarter')

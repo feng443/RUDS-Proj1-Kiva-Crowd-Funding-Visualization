@@ -35,6 +35,11 @@ def gdp_scatterplot(kiva_data):
             label=gender
         )
 
+    for h in plt.legend().legendHandles: h._sizes = [100]
+        
+    # Improvement: Annotate top 3 countries
+    
+
     plt.xlabel('Median Loan Amount')
     plt.ylabel('Per Capital GDP (2017 US$)')
     plt.title('Median Loan Amount vs GDP Per Capita (size by Number of Loans)')
