@@ -9,7 +9,8 @@ def plot_country_by_loan_amount(df):
     country_df_filtered.reset_index(inplace=True)
     print(country_df_filtered)
 
-    country_df_filtered.plot.bar(x='country', y='loan_amount', color=['steelblue', 'r', 'y', 'g', 'c', 'silver', 'm', 'k'],
+    #country_df_filtered.plot.bar(x='country', y='loan_amount', color=['steelblue', 'r', 'y', 'g', 'c', 'silver', 'm', 'k'],
+    country_df_filtered.plot.bar(x='country', y='loan_amount', color=['steelblue'],
                                  align='center', figsize=(20, 4))
 
     plt.title("Least funded 20 countries")

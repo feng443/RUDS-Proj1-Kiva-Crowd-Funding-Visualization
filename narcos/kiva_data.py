@@ -51,7 +51,8 @@ class KivaData(object):
 
     def get_loan_data(self):
         sample_str = '_sample' if self._use_sample else ''
-        file = os.path.join('resource', f'kiva_loans{sample_str}.csv')
+        #file = os.path.join('resource', f'kiva_loans{sample_str}.csv')
+        file = os.path.join('resource', 'kiva_loans.csv')
         df = pd.read_csv(file)
 
         ## Covert date time types
