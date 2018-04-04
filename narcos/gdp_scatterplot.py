@@ -9,7 +9,7 @@ def gdp_scatterplot(kiva_data):
         for x in kiva_data.gdp[['country_code', 'gdp']].itertuples()
     }
 
-    loan_gdp_df = loan_data.groupby(['country_code', 'gender'])['funded_amount'].agg(['median', 'count']).reset_index()
+    loan_gdp_df = loan_data.groupby(['country_code', 'gender'])['loan_amount'].agg(['median', 'count']).reset_index()
 
     loan_gdp_df.loc[:, 'gdp'] = loan_gdp_df['country_code'].map(
         lambda x: pd.to_numeric(gdp_lookup.get(x, 0))
@@ -35,8 +35,8 @@ def gdp_scatterplot(kiva_data):
             label=gender
         )
 
-    plt.xlabel('Median Funded Amount')
+    plt.xlabel('Median Loan Amount')
     plt.ylabel('Per Capital GDP (2017 US$)')
-    plt.title('Median Funded Amount vs GDP Per Capita (size by Number of Loans)')
+    plt.title('Median Loan Amount vs GDP Per Capita (size by Number of Loans)')
     plt.savefig(os.path.join('image', 'gdp_scatterplot.png'))
     plt.show()
