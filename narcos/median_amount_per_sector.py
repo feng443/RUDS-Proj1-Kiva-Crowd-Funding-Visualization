@@ -15,7 +15,7 @@ def median_amount_per_sector(df):
     md_df = md_df[md_df['Qtr'] < pd.Period('2017Q3')]
     md_df
     # funded_amount
-    plt.figure(figsize=(20, 10))
+    plt.figure(figsize=(16, 10))
     sns.pointplot(
         x='Qtr',
         y='loan_amount',

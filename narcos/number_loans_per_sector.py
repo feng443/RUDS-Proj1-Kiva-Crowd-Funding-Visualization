@@ -12,7 +12,7 @@ def number_loans_per_sector(df):
     ts_df = df.groupby(['Qtr', 'sector'])['id'].count().reset_index()
     ts_df = ts_df[ts_df['Qtr'] < pd.Period('2017Q3')]
     
-    plt.figure(figsize=(20, 10))
+    plt.figure(figsize=(16, 10))
     sns.pointplot(
         x='Qtr',
         y='id',
