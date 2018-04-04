@@ -10,42 +10,37 @@ March - April 2018, Team NARCOS:
 ## Synopsis
 Based on Wikipedia, Kiva is a non profit organization that allows people to lend money via the Internet to low-income entrepreneurs and students in over 80 countries. Kiva's mission is “to connect people through lending to alleviate poverty".
 
-In this analysis, we will look into patterns of Kiva crowd-funding utlizing [Kaggle data set](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding), [Fixer Foreign Exchange API](https://fixer.io/) and [World Bank Open Data](https://data.worldbank.org/).
+In this analysis, we will look into patterns of Kiva crowd-funding utlizing [Kaggle data set](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding), [World Bank Open Data](https://data.worldbank.org/) API and Plotly (https://plot.ly/) Web Services.
 
 ## Questions
 
-- Comparison by country, sector ad gender
-- Distribution of loans geographically on a global map
-- Word Cloud to show what keywords are mostly mentioned
-- Histogram and barplots showing distribution of load amount
-- Trend over time
-- Correlation of median loan amount vs GDP per capital and country's level of development (based on Word Bank)
+- How does the amount of loan get distributed by sector?
+- Which countries get the most and least funding?
+- How do loans differ between genders?
+- How does the amount of loans change over time?
+- Is there a correlation between loan amount vs country’s economic condition such as GDP per capita?
 
 ## Development Methods
 
 - Make it work first, then improve
+- Agile and task driven
 - Fast iteration
 - Modular and test driven
 
 ## Code Organization
 
-pip install -r requirements.txt
-conda install -c conda-base wordcloud
-
-* KivaDataVisualization.ipynb
-* requirements.txt
-* README.md
-* narcos/
-    * fixer_config.py
-    * kiva_data.py
-    * map.py
-    * word_cloud.py
-* data/
-* image/
+* [KivaDataExploring.ipynb](KivaDataExploring.ipynb)
+* [KivaDataVisualization.ipynb](KivaDataVisualization.ipynb)
+* [requirements.txt](requirements.txt)
+* [README.md](README.md)
+* [narcos/](narcos/)
+* [resource/](resource/)
+* [image/](image/)
+* [backup/](backup/)
 
 ## Setup Environment
 
-Wordcloud need C compile if using pip so condat installer is better.
+Anoconda3 and following extra modules are required:
 
 ```bash
 pip install -r requirements.txt
