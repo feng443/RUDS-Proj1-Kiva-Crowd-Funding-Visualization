@@ -40,6 +40,12 @@ In this analysis, we will look into patterns of Kiva crowd-funding utlizing [Kag
 
 ## Setup Environment
 
+```bash
+git clone https://github.com/feng443/RUDSWeek8Project1
+```
+
+Download [Kiva Data Set](https://www.kaggle.com/kiva/data-science-for-good-kiva-crowdfunding) and copy to resource/ folder.
+
 Anoconda3 and following extra modules are required:
 
 ```bash
